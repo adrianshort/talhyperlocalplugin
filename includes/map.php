@@ -83,5 +83,3 @@ function talhyperlocal_enqueue()
     wp_enqueue_script( 'leaflet-js' );
 }
 add_action( 'wp_enqueue_scripts', 'talhyperlocal_enqueue' );
-
-?>
