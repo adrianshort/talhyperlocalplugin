@@ -3,7 +3,7 @@
 Plugin Name: Talk About Local Hyperlocal Sites Directory
 Plugin URI: 
 Description:
-Version: 0.1.1
+Version: 0.1.2.1
 Author: Adrian Short
 Author URI: https://adrianshort.org/
 License: GPL v3
