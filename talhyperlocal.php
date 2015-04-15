@@ -77,6 +77,22 @@ function talhyperlocal_init() {
 	);
 	register_taxonomy( 'countries', array( 'site' ), $args );
 
+	// Create taxonomy: Hyperlocal Groups
+	$args = array(
+		'labels'            =>  array(
+															'name'      =>  'Groups',
+														),
+		'hierarchical'      =>  false,
+		'show_ui'           =>  true,
+		'query_var'         =>  true,
+		'rewrite'           =>  array(
+															'slug' =>				'groups',
+															'with_front' =>	true,
+														),
+		'show_admin_column' =>  true,
+	);
+	register_taxonomy( 'groups', array( 'site' ), $args );
+
 	// Create taxonomy: Platforms
 	$args = array(
 		'labels'            =>  array(
@@ -92,5 +108,6 @@ function talhyperlocal_init() {
 		'show_admin_column' =>  true,
 	);
 	register_taxonomy( 'platforms', array( 'site' ), $args );
+
 }
 add_action( 'init', 'talhyperlocal_init' );
