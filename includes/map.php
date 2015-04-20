@@ -20,6 +20,7 @@ function talhyperlocal_map_shortcode( $id ) {
   <div id="talmap" style="height: 400px; width: 100%; margin: 0 0 50px 0;"></div><!-- leaflet.js map -->
 
   <script>
+  <!--
 
 <?php
   $i = 0;
@@ -65,9 +66,10 @@ function talhyperlocal_map_shortcode( $id ) {
 echo sprintf("var circle = L.circle([%f, %f], %d, { color: 'red', fillColor: '#f03', fillOpacity: 0.2  }).addTo(map);", $meta['geo_latitude'][0], $meta['geo_longitude'][0], $meta['distance_covered_miles'][0] * 1609.344 );
 endif;
 ?>
+
+-->
 </script>
 
-  <table>
   <?php
 
 }
