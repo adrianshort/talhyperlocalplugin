@@ -39,6 +39,7 @@ if ( $query->have_posts() ) :
       'country'         => get_the_terms( get_the_ID(), 'countries' ),
       'council'         => get_the_terms( get_the_ID(), 'councils' ),
       'platform'        => get_the_terms( get_the_ID(), 'platforms' ),
+      'group'           => get_the_terms( get_the_ID(), 'groups' )
     );
 
     $sites[]= $row;
