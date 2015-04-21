@@ -36,10 +36,10 @@ if ( $query->have_posts() ) :
       'area_covered'    => $meta['area_covered'][0],
       'body'            => get_the_content(),
       'area_covered'    => $meta['area_covered'][0],
-      'country'         => get_the_terms( get_the_ID(), 'countries' ),
-      'council'         => get_the_terms( get_the_ID(), 'councils' ),
-      'platform'        => get_the_terms( get_the_ID(), 'platforms' ),
-      'group'           => get_the_terms( get_the_ID(), 'groups' )
+      'country'         => array_values(get_the_terms( get_the_ID(), 'countries' ))[0]->name,
+      'council'         => array_values(get_the_terms( get_the_ID(), 'councils' ))[0]->name,
+      'platform'        => array_values(get_the_terms( get_the_ID(), 'platforms' ))[0]->name,
+      'group'           => array_values(get_the_terms( get_the_ID(), 'groups' ))[0]->name
     );
 
     $sites[]= $row;
