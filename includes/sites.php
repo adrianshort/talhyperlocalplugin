@@ -26,7 +26,8 @@ if ( $query->have_posts() ) :
 
     $row = array(
       'title'           => get_the_title(),
-      'url'             => get_permalink(),
+      'permalink'       => get_permalink(),
+      'url'             => $meta['url'][0],
       'feed_url'        => $meta['feed_url'][0],
       'date_created'    => get_the_date("c"),
       'date_modified'   => get_the_modified_date("c"),
