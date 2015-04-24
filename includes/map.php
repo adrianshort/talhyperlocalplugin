@@ -1,4 +1,5 @@
 <?php
+define( 'AS_DEBUG', false );
 
 function talhyperlocal_map_shortcode( $id ) {
     $options = array(
@@ -28,12 +29,39 @@ function talhyperlocal_map_shortcode( $id ) {
     
     $i++;
 
+
+
     if ( $i == 1 ) {
       if ( $id ) {
         $meta = get_post_meta( get_the_ID() );
         $centre_lat = $meta['geo_latitude'][0];
         $centre_lon = $meta['geo_longitude'][0];
-        $zoom = 11;
+
+        // Get zoom level relative to distance covered
+        $miles = $meta['distance_covered_miles'][0]; 
+
+        switch( $miles ) {
+          case ( $miles <= 0.1 ):
+            $zoom = 16;
+            break;
+          case ( $miles <= 0.5 ):
+            $zoom = 14;
+            break;
+          case ( $miles <= 1.0 ):
+            $zoom = 13;
+            break;
+          case ( $miles <= 2.0 ):
+            $zoom = 12;
+            break;
+          case ( $miles <= 3.0 ):
+            $zoom = 11;
+            break;
+          case ( $miles <= 5.0 ):
+            $zoom = 11;
+            break;
+          default:
+            $zoom = 10;
+        }
       } else {
         $centre_lat = 54.0;
         $centre_lon = 0;
@@ -71,7 +99,7 @@ endif;
 </script>
 
   <?php
-
+  if ( AS_DEBUG ) echo "<h1>Zoom: $zoom Miles: $miles</h1>";
 }
 add_shortcode( 'talmap', 'talhyperlocal_map_shortcode' );
 
