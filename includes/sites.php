@@ -25,7 +25,7 @@ if ( $query->have_posts() ) :
     // hyperlocal_group_id
 
     $row = array(
-      'title'           => get_the_title(),
+      'title'           => html_entity_decode( get_the_title() ),
       'permalink'       => get_permalink(),
       'url'             => $meta['url'][0],
       'feed_url'        => $meta['feed_url'][0],
@@ -34,12 +34,12 @@ if ( $query->have_posts() ) :
       'lat'             => (float)$meta['geo_latitude'][0],
       'lon'             => (float)$meta['geo_longitude'][0],
       'radius_miles'    => (float)$meta['distance_covered_miles'][0],
-      'area_covered'    => $meta['area_covered'][0],
+      'area_covered'    => html_entity_decode( $meta['area_covered'][0] ),
       'body'            => get_the_content(),
-      'country'         => array_values(get_the_terms( get_the_ID(), 'countries' ))[0]->name,
-      'council'         => array_values(get_the_terms( get_the_ID(), 'councils' ))[0]->name,
-      'platform'        => array_values(get_the_terms( get_the_ID(), 'platforms' ))[0]->name,
-      'group'           => array_values(get_the_terms( get_the_ID(), 'groups' ))[0]->name
+      'country'         => html_entity_decode( array_values(get_the_terms( get_the_ID(), 'countries' ))[0]->name ),
+      'council'         => html_entity_decode( array_values(get_the_terms( get_the_ID(), 'councils' ))[0]->name ),
+      'platform'        => html_entity_decode( array_values(get_the_terms( get_the_ID(), 'platforms' ))[0]->name ),
+      'group'           => html_entity_decode( array_values(get_the_terms( get_the_ID(), 'groups' ))[0]->name )
     );
 
     $sites[]= $row;
