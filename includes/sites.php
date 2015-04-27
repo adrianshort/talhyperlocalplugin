@@ -36,10 +36,10 @@ if ( $query->have_posts() ) :
       'radius_miles'    => (float)$meta['distance_covered_miles'][0],
       'area_covered'    => html_entity_decode( $meta['area_covered'][0] ),
       'body'            => get_the_content(),
-      'country'         => html_entity_decode( array_values(get_the_terms( get_the_ID(), 'countries' ))[0]->name ),
-      'council'         => html_entity_decode( array_values(get_the_terms( get_the_ID(), 'councils' ))[0]->name ),
-      'platform'        => html_entity_decode( array_values(get_the_terms( get_the_ID(), 'platforms' ))[0]->name ),
-      'group'           => html_entity_decode( array_values(get_the_terms( get_the_ID(), 'groups' ))[0]->name )
+      'country'         => tax_first_name( get_the_ID(), 'countries' ),
+      'council'         => tax_first_name( get_the_ID(), 'councils' ),
+      'platform'        => tax_first_name( get_the_ID(), 'platforms' ),
+      'group'           => tax_first_name( get_the_ID(), 'groups' )
     );
 
     $sites[]= $row;
@@ -77,4 +77,13 @@ if ( $_GET['format'] == 'csv' ) {
 } else {
   header( "Content-Type: application/json" );
   echo json_encode( $sites );
+}
+
+// Get the name of the first taxonomy term for a given post
+function tax_first_name( $id, $tax_name ) {
+  $terms = get_the_terms( $id, $tax_name );
+  $first_term = array_slice( $terms, 0, 1 );
+  $bare_term = array_shift( $first_term );
+  $name = $bare_term->name;
+  return( html_entity_decode( $name ) );
 }
