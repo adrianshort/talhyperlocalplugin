@@ -24,17 +24,20 @@ if ( $query->have_posts() ) :
     // party_affiliation
     // hyperlocal_group_id
 
+    if ( isset( $meta['feed_url'] ) ) $feed_url = $meta['feed_url'][0];
+    if ( isset( $meta['area_covered'] ) ) $area_covered = html_entity_decode( $meta['area_covered'][0] );
+
     $row = array(
       'title'           => html_entity_decode( get_the_title() ),
       'permalink'       => get_permalink(),
       'url'             => $meta['url'][0],
-      'feed_url'        => $meta['feed_url'][0],
+      'feed_url'        => $feed_url,
       'date_created'    => get_the_date("c"),
       'date_modified'   => get_the_modified_date("c"),
       'lat'             => (float)$meta['geo_latitude'][0],
       'lon'             => (float)$meta['geo_longitude'][0],
       'radius_miles'    => (float)$meta['distance_covered_miles'][0],
-      'area_covered'    => html_entity_decode( $meta['area_covered'][0] ),
+      'area_covered'    => $area_covered,
       'body'            => get_the_content(),
       'country'         => tax_first_name( get_the_ID(), 'countries' ),
       'council'         => tax_first_name( get_the_ID(), 'councils' ),
