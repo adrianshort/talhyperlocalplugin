@@ -1,6 +1,6 @@
 <?php
-ini_set( 'display_errors', 1 );
-error_reporting( E_ALL );
+// ini_set( 'display_errors', 'stdout' );
+// error_reporting( E_ALL );
 
 define( 'WP_USE_THEMES', false );
 require_once( '../../../../wp-load.php' );
