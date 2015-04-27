@@ -1,6 +1,6 @@
 <?php
-// ini_set( 'display_errors', 1 );
-// error_reporting( E_ALL ^ E_NOTICE );
+ini_set( 'display_errors', 1 );
+error_reporting( E_ALL );
 
 define( 'WP_USE_THEMES', false );
 require_once( '../../../../wp-load.php' );
@@ -82,8 +82,12 @@ if ( $_GET['format'] == 'csv' ) {
 // Get the name of the first taxonomy term for a given post
 function tax_first_name( $id, $tax_name ) {
   $terms = get_the_terms( $id, $tax_name );
-  $first_term = array_slice( $terms, 0, 1 );
-  $bare_term = array_shift( $first_term );
-  $name = $bare_term->name;
-  return( html_entity_decode( $name ) );
+  if ( $terms ) {
+    $first_term = array_slice( $terms, 0, 1 );
+    $bare_term = array_shift( $first_term );
+    $name = $bare_term->name;
+    return( html_entity_decode( $name ) );
+  } else {
+    return null;
+  }
 }
