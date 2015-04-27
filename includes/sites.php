@@ -51,7 +51,7 @@ else :
   echo "No posts matched the query";
 endif;
 
-if ( $_GET['format'] == 'csv' ) {
+if ( isset( $_GET['format'] ) &&  $_GET['format'] == 'csv' ) {
   header( "Content-Type: text/csv" );
   header('Content-Disposition: attachment; filename="localweblist.csv"');
   $fp = fopen('php://output', 'w');
