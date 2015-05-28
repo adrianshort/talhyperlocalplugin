@@ -8,7 +8,7 @@ require_once( '../../../../wp-load.php' );
 $options = array(
   'post_type' => 'site',
   'posts_per_page' => -1, // -1 for all posts
-  'post_status' => 'publish',
+  'post_status' => array( 'publish', 'archive' ),
   'orderby' => 'title',
   'order' => 'ASC'
 );

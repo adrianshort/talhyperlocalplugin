@@ -12,6 +12,7 @@ function talhyperlocal_map_shortcode( $id ) {
 
     if ( $id ) {
       $options['p'] = $id;
+      $options['post_status'] = array( 'publish', 'archive' );
     }
 
 
